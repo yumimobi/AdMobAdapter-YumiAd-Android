@@ -67,12 +67,14 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
             @Override
             public void onInterstitialClosed() {
                 listener.onAdClosed();
+                destroyYumiAd();
             }
 
             @Override
             public void onInterstitialExposureFailed(AdError adError) {
                 // exposure failed should close the ad
                 listener.onAdClosed();
+                destroyYumiAd();
             }
 
             @Override
@@ -80,6 +82,15 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
             }
         });
         mYumiInterstitial.requestYumiInterstitial();
+    }
+
+    private void destroyYumiAd() {
+        // admob 不调用 onDestroy() 方法，如果不销毁 mYumiInterstitial（多次使用不同 activity 创建 mYumiInterstitial），
+        // 会导致 mYumiInterstitial.showInterstitial() 无效
+        if (mYumiInterstitial != null) {
+            mYumiInterstitial.destroy();
+            mYumiInterstitial = null;
+        }
     }
 
     @Override
