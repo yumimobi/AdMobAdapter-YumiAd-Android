@@ -10,10 +10,12 @@ import com.google.android.gms.ads.mediation.customevent.CustomEventBanner;
 import com.google.android.gms.ads.mediation.customevent.CustomEventBannerListener;
 import com.yumi.android.sdk.ads.publish.AdError;
 import com.yumi.android.sdk.ads.publish.YumiBanner;
+import com.yumi.android.sdk.ads.publish.YumiSettings;
 import com.yumi.android.sdk.ads.publish.listener.IYumiBannerListener;
 
 import static com.yumi.android.sdk.ads.publish.enumbean.AdSize.BANNER_SIZE_320X50;
 import static com.yumi.android.sdk.ads.publish.enumbean.AdSize.BANNER_SIZE_728X90;
+import static com.yumiad.admobadapter.YumiAdUtil.getGDPRConsent;
 import static com.yumiad.admobadapter.YumiAdUtil.recodeYumiError;
 
 /**
@@ -30,6 +32,9 @@ public class YumiAdBanner implements CustomEventBanner {
     public void requestBannerAd(Context context, final CustomEventBannerListener customEventBannerListener, String s, AdSize adSize, MediationAdRequest mediationAdRequest, Bundle bundle) {
         // create YumiBanner instance by activity and your YumiID.
         YumiAdUtil.YumiParams p = new YumiAdUtil.YumiParams(s);
+        YumiSettings.runInCheckPermission(p.runInCheckPermissions);
+        YumiSettings.setGDPRConsent(getGDPRConsent(p.GDPRConsent));
+
         banner = new YumiBanner((Activity) context, p.slotId, p.isAutoloadNext);
         //setBannerContainer
         banner.setBannerContainer(null, calculateAdSize(adSize), p.isMatchWindowWidth);

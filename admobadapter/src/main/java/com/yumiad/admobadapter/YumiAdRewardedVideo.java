@@ -38,6 +38,7 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
         YumiAdUtil.YumiParams p = new YumiAdUtil.YumiParams(serverParameters.getString("parameter"));
         YumiSettings.runInCheckPermission(p.runInCheckPermissions);
         YumiSettings.setGDPRConsent(getGDPRConsent(p.GDPRConsent));
+
         mYumiMedia = YumiMedias.getYumiMedia((Activity) context, p.slotId);
         mYumiMedia.setMediaEventListener(new IYumiMediaListener() {
             @Override

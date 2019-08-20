@@ -11,8 +11,10 @@ import com.google.android.gms.ads.mediation.customevent.CustomEventInterstitial;
 import com.google.android.gms.ads.mediation.customevent.CustomEventInterstitialListener;
 import com.yumi.android.sdk.ads.publish.AdError;
 import com.yumi.android.sdk.ads.publish.YumiInterstitial;
+import com.yumi.android.sdk.ads.publish.YumiSettings;
 import com.yumi.android.sdk.ads.publish.listener.IYumiInterstitialListener;
 
+import static com.yumiad.admobadapter.YumiAdUtil.getGDPRConsent;
 import static com.yumiad.admobadapter.YumiAdUtil.recodeYumiError;
 
 /**
@@ -35,6 +37,9 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
         }
 
         YumiAdUtil.YumiParams p = new YumiAdUtil.YumiParams(serverParameter);
+        YumiSettings.runInCheckPermission(p.runInCheckPermissions);
+        YumiSettings.setGDPRConsent(getGDPRConsent(p.GDPRConsent));
+
         mYumiInterstitial = new YumiInterstitial((Activity) context, p.slotId, p.isAutoloadNext);
         mYumiInterstitial.setChannelID(p.channelId);
         mYumiInterstitial.setVersionName(p.versionName);
