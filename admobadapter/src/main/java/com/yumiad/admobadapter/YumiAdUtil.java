@@ -9,6 +9,7 @@ import com.yumi.android.sdk.ads.publish.enumbean.YumiGDPRStatus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static android.text.TextUtils.isEmpty;
 import static com.google.android.gms.ads.AdRequest.ERROR_CODE_INTERNAL_ERROR;
 import static com.google.android.gms.ads.AdRequest.ERROR_CODE_INVALID_REQUEST;
 import static com.google.android.gms.ads.AdRequest.ERROR_CODE_NETWORK_ERROR;
@@ -53,7 +54,7 @@ final class YumiAdUtil {
 
     static class YumiParams {
         String slotId = "";
-        boolean isAutoloadNext = false;
+        boolean isAutoloadNext;
         String channelId = "";
         String versionName = "";
         String GDPRConsent;
@@ -61,7 +62,7 @@ final class YumiAdUtil {
         boolean runInCheckPermissions = false;
 
         YumiParams(String json) {
-            if (json == null) {
+            if (isEmpty(json)) {
                 return;
             }
             try {
