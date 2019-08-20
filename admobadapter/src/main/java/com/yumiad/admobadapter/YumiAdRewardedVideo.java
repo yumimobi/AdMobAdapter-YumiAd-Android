@@ -26,6 +26,8 @@ import static com.yumiad.admobadapter.YumiAdUtil.recodeYumiError;
 public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
     private static final String TAG = "ZPLAYAdsAdMobAdapter";
     private YumiMedia mYumiMedia;
+    private MediationRewardedVideoAdListener mListener;
+    private boolean hasCalledLoad;
 
     @Override
     public void initialize(Context context, MediationAdRequest mediationAdRequest, String s, final MediationRewardedVideoAdListener listener, Bundle serverParameters, Bundle bundle1) {
@@ -35,6 +37,8 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
             return;
         }
 
+        mListener = listener;
+
         YumiAdUtil.YumiParams p = new YumiAdUtil.YumiParams(serverParameters.getString(CUSTOM_EVENT_SERVER_PARAMETER_FIELD));
         YumiSettings.runInCheckPermission(p.runInCheckPermissions);
         YumiSettings.setGDPRConsent(getGDPRConsent(p.GDPRConsent));
@@ -43,12 +47,18 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
         mYumiMedia.setMediaEventListener(new IYumiMediaListener() {
             @Override
             public void onMediaPrepared() {
-                listener.onAdLoaded(YumiAdRewardedVideo.this);
+                if (hasCalledLoad) {
+                    listener.onAdLoaded(YumiAdRewardedVideo.this);
+                    hasCalledLoad = false;
+                }
             }
 
             @Override
             public void onMediaPreparedFailed(AdError adError) {
-                listener.onAdFailedToLoad(YumiAdRewardedVideo.this, recodeYumiError(adError));
+                if (hasCalledLoad) {
+                    listener.onAdFailedToLoad(YumiAdRewardedVideo.this, recodeYumiError(adError));
+                    hasCalledLoad = false;
+                }
 
             }
 
@@ -107,7 +117,14 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
             Log.e(TAG, "YumiAd not initialized.");
             return;
         }
-        mYumiMedia.requestYumiMedia();
+
+        hasCalledLoad = true;
+
+        if (mYumiMedia.isReady()) {
+            mListener.onAdLoaded(YumiAdRewardedVideo.this);
+        } else {
+            mYumiMedia.requestYumiMedia();
+        }
     }
 
     @Override
