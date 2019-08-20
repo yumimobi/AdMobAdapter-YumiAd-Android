@@ -44,12 +44,11 @@ final class YumiAdUtil {
                 return ERROR_CODE_NETWORK_ERROR;
             case ERROR_NO_FILL:
                 return ERROR_CODE_NO_FILL;
-            case ERROR_INTERNAL:
-                return ERROR_CODE_INTERNAL_ERROR;
             case ERROR_INVALID:
                 return ERROR_CODE_INVALID_REQUEST;
+            default:
+                return ERROR_CODE_INTERNAL_ERROR;
         }
-        return ERROR_CODE_INTERNAL_ERROR;
     }
 
     static class YumiParams {
