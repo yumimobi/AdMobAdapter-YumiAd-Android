@@ -39,7 +39,7 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
         YumiSettings.runInCheckPermission(p.runInCheckPermissions);
         YumiSettings.setGDPRConsent(getGDPRConsent(p.GDPRConsent));
 
-        mYumiMedia = YumiMedias.getYumiMedia((Activity) context, p.slotId);
+        mYumiMedia = new YumiMedia((Activity) context, p.slotId);
         mYumiMedia.setMediaEventListener(new IYumiMediaListener() {
             @Override
             public void onMediaPrepared() {
