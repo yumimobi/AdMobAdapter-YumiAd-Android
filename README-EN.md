@@ -1,16 +1,16 @@
-- [1 integral YumiAd SDK and AdMob SDK](#1-integral-yumiad-sdk-and-admob-sdk)
+- [1 Integrates YumiAd SDK and AdMob SDK](#1-integrates-yumiad-sdk-and-admob-sdk)
   - [1.1 add YumiAd SDK dependency](#11-add-yumiad-sdk-dependency)
   - [1.2 add AdMob SDK dependency](#12-add-admob-sdk-dependency)
   - [1.3 add Adapter into project](#13-add-adapter-into-project)
 - [2 add YumiAd source into AdMob platform](#2-add-yumiad-source-into-admob-platform)
-- [3 Testing ID](#3-testing-ID)
+- [3 Testing ID](#3-testing-id)
 
-## 1 integral YumiAd SDK and AdMob SDK
+## 1 Integrates YumiAd SDK and AdMob SDK
 ### 1.1 add YumiAd SDK dependency
 add dependency into app's build.gradle
 ```groovy
 dependencies {
-    implementation 'com.yumimobi.ads:yumiad:1.1.1'
+    implementation 'com.yumimobi.ads:yumiad:1.1.2'
 }
 ```
 ### 1.2 add AdMob SDK dependency
@@ -39,7 +39,7 @@ The following example is to configure Yumi source on an existing application (Ad
 
 ![image](imgs/new-mediation-group-01.png)
 
-2. Choose the advertising format and platform you want to use. YumiAd currently supports Banner, Interstitial and Rewarded Video. Here is Bnner as an example. Click "CONTINUE" to go to the next step.
+2. Choose the advertising format and platform you want to use. YumiAd currently supports Banner, Interstitial and Rewarded Video. Here is Banner as an example. Click "CONTINUE" to go to the next step.
 
 ![image](imgs/new-mediation-group-02.png)
 

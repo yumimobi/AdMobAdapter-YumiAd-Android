@@ -4,7 +4,7 @@
   - [1.2 添加 AdMob 广告 SDK 依赖](#12-%e6%b7%bb%e5%8a%a0-admob-%e5%b9%bf%e5%91%8a-sdk-%e4%be%9d%e8%b5%96)
   - [1.3 将 Adapter 导入到工程中](#13-%e5%b0%86-adapter-%e5%af%bc%e5%85%a5%e5%88%b0%e5%b7%a5%e7%a8%8b%e4%b8%ad)
 - [2 在 AdMob 平台添加 YumiAd 广告源](#2-%e5%9c%a8-admob-%e5%b9%b3%e5%8f%b0%e6%b7%bb%e5%8a%a0-yumiad-%e5%b9%bf%e5%91%8a%e6%ba%90)
-- [3 测试 ID](#3-%e6%b5%8b%e8%af%95-ID)
+- [3 测试 ID](#3-%e6%b5%8b%e8%af%95-id)
 
 
 ## 1 接入 YumiAd SDK 和 AdMob SDK
@@ -12,7 +12,7 @@
 在 app module 的 build.gradle 文件中添加
 ```groovy
 dependencies {
-    implementation 'com.yumimobi.ads:yumiad:1.1.1'
+    implementation 'com.yumimobi.ads:yumiad:1.1.2'
 }
 ```
 ### 1.2 添加 AdMob 广告 SDK 依赖
@@ -25,7 +25,7 @@ dependencies {
 
 ### 1.3 将 Adapter 导入到工程中
 
-可以选择将直接将 [admobadapter](./admobadapter) 当作 module 导入到工程中；也可以将 admobadapter 中的各文件粘贴到工程中，各文件如下：
+可以选择直接将 [admobadapter](./admobadapter) 当作 module 导入到工程中；也可以将 admobadapter 中的各文件粘贴到工程中，各文件如下：
 
 1. [YumiAdBanner.java](./admobadapter/src/main/java/com/yumiad/admobadapter/YumiAdBanner.java) Banner Adapter
 
@@ -41,7 +41,7 @@ dependencies {
 
 ![image](imgs/new-mediation-group-01.png)
 
-2. 选择您要使用的广告形式及操作系统，YumiAd 目前支持 Banner, Interstitial 及 Rewarded Video，此处以 Bnner 为例，点击 "CONTINUE" 进入下一步
+2. 选择您要使用的广告形式及操作系统，YumiAd 目前支持 Banner, Interstitial 及 Rewarded Video，此处以 Banner 为例，点击 "CONTINUE" 进入下一步
 
 ![image](imgs/new-mediation-group-02.png)
 
