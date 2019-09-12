@@ -23,12 +23,11 @@ import static com.yumiad.admobadapter.YumiAdUtil.recodeYumiError;
  * Created by lgd on 2019-07-18.
  */
 public class YumiAdInterstitial implements CustomEventInterstitial {
-    private static final String TAG = "ZPLAYAdsAdMobAdapter";
-    private YumiInterstitial mYumiInterstitial;
+    private static final String TAG = "YumiAdInterstitial";
 
     @Override
     public void requestInterstitialAd(Context context, final CustomEventInterstitialListener listener, String serverParameter, MediationAdRequest mediationAdRequest, Bundle customEventExtras) {
-        Log.e(TAG, "requestInterstitialAd");
+        Log.i(TAG, "requestInterstitialAd");
 
         if (!(context instanceof Activity)) {
             Log.e(TAG, "requestInterstitialAd: YumiAd needs Activity object to initialize sdk.");
@@ -46,32 +45,38 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
         mYumiInterstitial.setInterstitialEventListener(new IYumiInterstitialListener() {
             @Override
             public void onInterstitialPrepared() {
+                Log.i(TAG, "onInterstitialPrepared");
                 listener.onAdLoaded();
             }
 
             @Override
             public void onInterstitialPreparedFailed(AdError adError) {
+                Log.i(TAG, "onInterstitialPreparedFailed adError: " + adError);
                 listener.onAdFailedToLoad(recodeYumiError(adError));
             }
 
             @Override
             public void onInterstitialExposure() {
+                Log.i(TAG, "onInterstitialExposure");
                 listener.onAdOpened();
             }
 
             @Override
             public void onInterstitialClicked() {
+                Log.i(TAG, "onInterstitialClicked");
                 listener.onAdClicked();
             }
 
             @Override
             public void onInterstitialClosed() {
+                Log.i(TAG, "onInterstitialClosed");
                 listener.onAdClosed();
                 destroyYumiAd();
             }
 
             @Override
             public void onInterstitialExposureFailed(AdError adError) {
+                Log.i(TAG, "onInterstitialExposureFailed");
                 // exposure failed should close the ad
                 listener.onAdClosed();
                 destroyYumiAd();

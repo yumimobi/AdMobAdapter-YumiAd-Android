@@ -51,26 +51,31 @@ public class YumiAdBanner implements CustomEventBanner {
         banner.setBannerEventListener(new IYumiBannerListener() {
             @Override
             public void onBannerPrepared() {
+                Log.d(TAG, "onBannerPrepared: ");
                 customEventBannerListener.onAdLoaded(banner.getBannerView());
             }
 
             @Override
             public void onBannerPreparedFailed(AdError adError) {
+                Log.d(TAG, "onBannerPreparedFailed: " + adError);
                 customEventBannerListener.onAdFailedToLoad(recodeYumiError(adError));
             }
 
             @Override
             public void onBannerExposure() {
+                Log.d(TAG, "onBannerExposure: ");
                 customEventBannerListener.onAdOpened();
             }
 
             @Override
             public void onBannerClicked() {
+                Log.d(TAG, "onBannerClicked: ");
                 customEventBannerListener.onAdClicked();
             }
 
             @Override
             public void onBannerClosed() {
+                Log.d(TAG, "onBannerClosed: ");
                 customEventBannerListener.onAdClosed();
             }
         });

@@ -70,23 +70,23 @@ public class RewardedVideoActivity extends AppCompatActivity implements Rewarded
 
     @Override
     public void onRewardedVideoAdLoaded() {
-        addLog("onRewardedVideoAdLoaded: ");
+        addLog("onRewardedVideoAdLoaded");
     }
 
     @Override
     public void onRewardedVideoAdOpened() {
-        addLog("onRewardedVideoAdOpened: ");
+        addLog("onRewardedVideoAdOpened");
 
     }
 
     @Override
     public void onRewardedVideoStarted() {
-        addLog("onRewardedVideoStarted: ");
+        addLog("onRewardedVideoStarted");
     }
 
     @Override
     public void onRewardedVideoAdClosed() {
-        addLog("onRewardedVideoAdClosed: ");
+        addLog("onRewardedVideoAdClosed ");
     }
 
     @Override
@@ -96,7 +96,7 @@ public class RewardedVideoActivity extends AppCompatActivity implements Rewarded
 
     @Override
     public void onRewardedVideoAdLeftApplication() {
-        addLog("onRewardedVideoAdLeftApplication: ");
+        addLog("onRewardedVideoAdLeftApplication");
 
     }
 
@@ -107,6 +107,6 @@ public class RewardedVideoActivity extends AppCompatActivity implements Rewarded
 
     @Override
     public void onRewardedVideoCompleted() {
-        addLog("onRewardedVideoCompleted: ");
+        addLog("onRewardedVideoCompleted");
     }
 }
