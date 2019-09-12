@@ -154,6 +154,7 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
     public void onDestroy() {
         if (mYumiMedia != null) {
             mYumiMedia.destroy();
+            mYumiMedia = null;
         }
     }
 
