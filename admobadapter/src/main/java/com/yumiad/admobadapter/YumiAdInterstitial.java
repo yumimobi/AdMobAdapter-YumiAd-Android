@@ -24,6 +24,7 @@ import static com.yumiad.admobadapter.YumiAdUtil.recodeYumiError;
  */
 public class YumiAdInterstitial implements CustomEventInterstitial {
     private static final String TAG = "YumiAdInterstitial";
+    private static YumiInterstitial mYumiInterstitial;
 
     @Override
     public void requestInterstitialAd(Context context, final CustomEventInterstitialListener listener, String serverParameter, MediationAdRequest mediationAdRequest, Bundle customEventExtras) {
@@ -33,6 +34,10 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
             Log.e(TAG, "requestInterstitialAd: YumiAd needs Activity object to initialize sdk.");
             listener.onAdFailedToLoad(AdRequest.ERROR_CODE_INVALID_REQUEST);
             return;
+        }
+
+        if (mYumiInterstitial != null) {
+            mYumiInterstitial.destroy();
         }
 
         YumiAdUtil.YumiParams p = new YumiAdUtil.YumiParams(serverParameter);
@@ -71,7 +76,6 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
             public void onInterstitialClosed() {
                 Log.i(TAG, "onInterstitialClosed");
                 listener.onAdClosed();
-                destroyYumiAd();
             }
 
             @Override
@@ -79,7 +83,6 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
                 Log.i(TAG, "onInterstitialExposureFailed");
                 // exposure failed should close the ad
                 listener.onAdClosed();
-                destroyYumiAd();
             }
 
             @Override
@@ -87,15 +90,6 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
             }
         });
         mYumiInterstitial.requestYumiInterstitial();
-    }
-
-    private void destroyYumiAd() {
-        // admob 不调用 onDestroy() 方法，如果不销毁 mYumiInterstitial（多次使用不同 activity 创建 mYumiInterstitial），
-        // 会导致 mYumiInterstitial.showInterstitial() 无效
-        if (mYumiInterstitial != null) {
-            mYumiInterstitial.destroy();
-            mYumiInterstitial = null;
-        }
     }
 
     @Override
