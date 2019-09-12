@@ -67,16 +67,35 @@ final class YumiAdUtil {
             }
             try {
                 JSONObject jo = new JSONObject(json);
-                slotId = jo.getString("slotId");
-                channelId = jo.getString("channelId");
-                versionName = jo.getString("versionName");
-                GDPRConsent = jo.getString("GDPRConsent");
-                isAutoloadNext = jo.getBoolean("isAutoloadNext");
-                isMatchWindowWidth = jo.getBoolean("isMatchWindowWidth");
-                runInCheckPermissions = jo.getBoolean("runInCheckPermissions");
+                slotId = getString(jo, "slotId");
+                channelId = getString(jo, "channelId");
+                versionName = getString(jo, "versionName");
+                GDPRConsent = getString(jo, "GDPRConsent");
+                isAutoloadNext = getBoolean(jo, "isAutoloadNext");
+                isMatchWindowWidth = getBoolean(jo, "isMatchWindowWidth");
+                runInCheckPermissions = getBoolean(jo, "runInCheckPermissions");
             } catch (JSONException e) {
                 Log.d(TAG, "YumiParams: parse error, ", e);
             }
         }
+
+        private String getString(JSONObject jo, String key) {
+            try {
+                return jo.getString(key);
+            } catch (Exception e) {
+                Log.d(TAG, "YumiParams: parse error, ", e);
+                return "";
+            }
+        }
+
+        private boolean getBoolean(JSONObject jo, String key) {
+            try {
+                return jo.getBoolean(key);
+            } catch (Exception e) {
+                Log.d(TAG, "YumiParams: parse error, ", e);
+                return false;
+            }
+        }
+
     }
 }
