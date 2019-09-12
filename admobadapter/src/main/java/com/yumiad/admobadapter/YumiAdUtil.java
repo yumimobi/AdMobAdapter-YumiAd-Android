@@ -22,6 +22,7 @@ import static com.google.android.gms.ads.AdRequest.ERROR_CODE_NO_FILL;
  */
 final class YumiAdUtil {
     private static final String TAG = "YumiAdUtil";
+    public static boolean onoff = true;
 
     static YumiGDPRStatus getGDPRConsent(String gdpt) {
         if (TextUtils.equals(gdpt, "0")) {
