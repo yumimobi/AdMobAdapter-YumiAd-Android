@@ -17,7 +17,6 @@ import com.yumi.android.sdk.ads.publish.listener.IYumiMediaListener;
 import com.yumi.android.sdk.ads.utils.ZplayDebug;
 
 import static com.yumiad.admobadapter.YumiAdUtil.getGDPRConsent;
-import static com.yumiad.admobadapter.YumiAdUtil.onoff;
 import static com.yumiad.admobadapter.YumiAdUtil.recodeYumiError;
 
 /**
@@ -33,7 +32,7 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
 
     @Override
     public void initialize(Context context, MediationAdRequest mediationAdRequest, String s, final MediationRewardedVideoAdListener listener, Bundle serverParameters, Bundle bundle1) {
-        ZplayDebug.d(TAG, "initialize", onoff);
+        ZplayDebug.d(TAG, "initialize");
         if (!(context instanceof Activity)) {
             Log.e(TAG, "requestInterstitialAd: YumiAd needs Activity object to initialize sdk.");
             listener.onAdFailedToLoad(this, AdRequest.ERROR_CODE_INVALID_REQUEST);
@@ -50,7 +49,7 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
         mYumiMedia.setMediaEventListener(new IYumiMediaListener() {
             @Override
             public void onMediaPrepared() {
-                ZplayDebug.d(TAG, "onMediaPrepared", onoff);
+                ZplayDebug.d(TAG, "onMediaPrepared");
                 if (hasCalledLoad) {
                     listener.onAdLoaded(YumiAdRewardedVideo.this);
                     hasCalledLoad = false;
@@ -59,7 +58,7 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
 
             @Override
             public void onMediaPreparedFailed(AdError adError) {
-                ZplayDebug.e(TAG, "onMediaPreparedFailed adError:" + adError, onoff);
+                ZplayDebug.e(TAG, "onMediaPreparedFailed adError:" + adError);
                 if (hasCalledLoad) {
                     listener.onAdFailedToLoad(YumiAdRewardedVideo.this, recodeYumiError(adError));
                     hasCalledLoad = false;
@@ -69,32 +68,32 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
 
             @Override
             public void onMediaExposure() {
-                ZplayDebug.d(TAG, "onMediaExposure", onoff);
+                ZplayDebug.d(TAG, "onMediaExposure");
                 listener.onAdOpened(YumiAdRewardedVideo.this);
             }
 
             @Override
             public void onMediaExposureFailed(AdError adError) {
-                ZplayDebug.d(TAG, "onMediaExposureFailed", onoff);
+                ZplayDebug.d(TAG, "onMediaExposureFailed");
                 // exposure failed show close the ad.
                 listener.onAdClosed(YumiAdRewardedVideo.this);
             }
 
             @Override
             public void onMediaClicked() {
-                ZplayDebug.d(TAG, "onMediaClicked", onoff);
+                ZplayDebug.d(TAG, "onMediaClicked");
                 listener.onAdClicked(YumiAdRewardedVideo.this);
             }
 
             @Override
             public void onMediaClosed(boolean isRewarded) {
-                ZplayDebug.d(TAG, "onMediaClosed: " + isRewarded, onoff);
+                ZplayDebug.d(TAG, "onMediaClosed: " + isRewarded);
                 listener.onAdClosed(YumiAdRewardedVideo.this);
             }
 
             @Override
             public void onMediaRewarded() {
-                ZplayDebug.d(TAG, "onMediaRewarded", onoff);
+                ZplayDebug.d(TAG, "onMediaRewarded");
                 RewardItem rewardItem = new RewardItem() {
                     @Override
                     public String getType() {
@@ -111,7 +110,7 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
 
             @Override
             public void onMediaStartPlaying() {
-                ZplayDebug.d(TAG, "onMediaStartPlaying", onoff);
+                ZplayDebug.d(TAG, "onMediaStartPlaying");
                 listener.onVideoStarted(YumiAdRewardedVideo.this);
             }
         });

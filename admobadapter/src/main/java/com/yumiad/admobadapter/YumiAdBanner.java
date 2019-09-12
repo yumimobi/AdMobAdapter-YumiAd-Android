@@ -19,7 +19,6 @@ import com.yumi.android.sdk.ads.utils.ZplayDebug;
 import static com.yumi.android.sdk.ads.publish.enumbean.AdSize.BANNER_SIZE_320X50;
 import static com.yumi.android.sdk.ads.publish.enumbean.AdSize.BANNER_SIZE_728X90;
 import static com.yumiad.admobadapter.YumiAdUtil.getGDPRConsent;
-import static com.yumiad.admobadapter.YumiAdUtil.onoff;
 import static com.yumiad.admobadapter.YumiAdUtil.recodeYumiError;
 
 /**
@@ -34,7 +33,7 @@ public class YumiAdBanner implements CustomEventBanner {
 
     @Override
     public void requestBannerAd(Context context, final CustomEventBannerListener customEventBannerListener, String s, AdSize adSize, MediationAdRequest mediationAdRequest, Bundle bundle) {
-        ZplayDebug.d(TAG, "requestBannerAd: ", onoff);
+        ZplayDebug.d(TAG, "requestBannerAd: ");
         if (!(context instanceof Activity)) {
             Log.e(TAG, "requestInterstitialAd: YumiAd needs Activity object to initialize sdk.");
             customEventBannerListener.onAdFailedToLoad(AdRequest.ERROR_CODE_INVALID_REQUEST);
@@ -53,31 +52,31 @@ public class YumiAdBanner implements CustomEventBanner {
         banner.setBannerEventListener(new IYumiBannerListener() {
             @Override
             public void onBannerPrepared() {
-                ZplayDebug.d(TAG, "onBannerPrepared", onoff);
+                ZplayDebug.d(TAG, "onBannerPrepared");
                 customEventBannerListener.onAdLoaded(banner.getBannerView());
             }
 
             @Override
             public void onBannerPreparedFailed(AdError adError) {
-                ZplayDebug.d(TAG, "onBannerPreparedFailed: " + adError, onoff);
+                ZplayDebug.d(TAG, "onBannerPreparedFailed: " + adError);
                 customEventBannerListener.onAdFailedToLoad(recodeYumiError(adError));
             }
 
             @Override
             public void onBannerExposure() {
-                ZplayDebug.d(TAG, "onBannerExposure", onoff);
+                ZplayDebug.d(TAG, "onBannerExposure");
                 customEventBannerListener.onAdOpened();
             }
 
             @Override
             public void onBannerClicked() {
-                ZplayDebug.d(TAG, "onBannerClicked", onoff);
+                ZplayDebug.d(TAG, "onBannerClicked");
                 customEventBannerListener.onAdClicked();
             }
 
             @Override
             public void onBannerClosed() {
-                ZplayDebug.d(TAG, "onBannerClosed", onoff);
+                ZplayDebug.d(TAG, "onBannerClosed");
                 customEventBannerListener.onAdClosed();
             }
         });

@@ -16,7 +16,6 @@ import com.yumi.android.sdk.ads.publish.listener.IYumiInterstitialListener;
 import com.yumi.android.sdk.ads.utils.ZplayDebug;
 
 import static com.yumiad.admobadapter.YumiAdUtil.getGDPRConsent;
-import static com.yumiad.admobadapter.YumiAdUtil.onoff;
 import static com.yumiad.admobadapter.YumiAdUtil.recodeYumiError;
 
 /**
@@ -30,7 +29,7 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
 
     @Override
     public void requestInterstitialAd(Context context, final CustomEventInterstitialListener listener, String serverParameter, MediationAdRequest mediationAdRequest, Bundle customEventExtras) {
-        ZplayDebug.d(TAG, "requestInterstitialAd", onoff);
+        ZplayDebug.d(TAG, "requestInterstitialAd");
 
         if (!(context instanceof Activity)) {
             Log.e(TAG, "requestInterstitialAd: YumiAd needs Activity object to initialize sdk.");
@@ -52,37 +51,37 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
         mYumiInterstitial.setInterstitialEventListener(new IYumiInterstitialListener() {
             @Override
             public void onInterstitialPrepared() {
-                ZplayDebug.d(TAG, "onInterstitialPrepared", onoff);
+                ZplayDebug.d(TAG, "onInterstitialPrepared");
                 listener.onAdLoaded();
             }
 
             @Override
             public void onInterstitialPreparedFailed(AdError adError) {
-                ZplayDebug.d(TAG, "onInterstitialPreparedFailed adError: " + adError, onoff);
+                ZplayDebug.d(TAG, "onInterstitialPreparedFailed adError: " + adError);
                 listener.onAdFailedToLoad(recodeYumiError(adError));
             }
 
             @Override
             public void onInterstitialExposure() {
-                ZplayDebug.d(TAG, "onInterstitialExposure", onoff);
+                ZplayDebug.d(TAG, "onInterstitialExposure");
                 listener.onAdOpened();
             }
 
             @Override
             public void onInterstitialClicked() {
-                ZplayDebug.d(TAG, "onInterstitialClicked", onoff);
+                ZplayDebug.d(TAG, "onInterstitialClicked");
                 listener.onAdClicked();
             }
 
             @Override
             public void onInterstitialClosed() {
-                ZplayDebug.d(TAG, "onInterstitialClosed", onoff);
+                ZplayDebug.d(TAG, "onInterstitialClosed");
                 listener.onAdClosed();
             }
 
             @Override
             public void onInterstitialExposureFailed(AdError adError) {
-                ZplayDebug.d(TAG, "onInterstitialExposureFailed", onoff);
+                ZplayDebug.d(TAG, "onInterstitialExposureFailed");
                 // exposure failed should close the ad
                 listener.onAdClosed();
             }
@@ -97,7 +96,7 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
     @Override
     public void showInterstitial() {
         if (mYumiInterstitial == null) {
-            ZplayDebug.d(TAG, "YumiAd not initialized.", onoff);
+            ZplayDebug.d(TAG, "YumiAd not initialized.");
             return;
         }
         mYumiInterstitial.showInterstitial();
