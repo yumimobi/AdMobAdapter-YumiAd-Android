@@ -139,10 +139,11 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
 
     @Override
     public void showVideo() {
-        if (mYumiMedia == null) {
-            Log.e(TAG, "YumiAd not initialized.");
+        if (mYumiMedia == null || !mYumiMedia.isReady()) {
+            ZplayDebug.d(TAG, "YumiAd not ready: " + mYumiMedia);
             return;
         }
+
         mYumiMedia.showMedia();
     }
 

@@ -95,10 +95,11 @@ public class YumiAdInterstitial implements CustomEventInterstitial {
 
     @Override
     public void showInterstitial() {
-        if (mYumiInterstitial == null) {
-            ZplayDebug.d(TAG, "YumiAd not initialized.");
+        if (mYumiInterstitial == null || !mYumiInterstitial.isReady()) {
+            ZplayDebug.d(TAG, "YumiAd not ready:  " + mYumiInterstitial);
             return;
         }
+
         mYumiInterstitial.showInterstitial();
     }
 
