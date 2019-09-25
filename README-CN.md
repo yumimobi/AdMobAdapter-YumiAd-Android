@@ -12,7 +12,7 @@
 在 app module 的 build.gradle 文件中添加
 ```groovy
 dependencies {
-    implementation 'com.yumimobi.ads:yumiad:1.1.2'
+    implementation 'com.yumimobi.ads:yumiad:1.2.0'
 }
 ```
 ### 1.2 添加 AdMob 广告 SDK 依赖
