@@ -8,10 +8,10 @@ import android.view.View;
 import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
-    static final String INTERSTITIAL_ID = "ca-app-pub-5451364651863658/8161509597";
-    static final String BANNER_ID = "ca-app-pub-5451364651863658/3431927093";
-    static final String VIDEO_ID = "ca-app-pub-5451364651863658/4170293692";
-    private static final String APP_ID = "ca-app-pub-5451364651863658~6441233812";
+    static final String INTERSTITIAL_ID = "ca-app-pub-1050908092086969/1253465593";
+    static final String BANNER_ID = "ca-app-pub-1050908092086969/5413391823";
+    static final String VIDEO_ID = "ca-app-pub-1050908092086969/2473718931";
+    private static final String APP_ID = "ca-app-pub-1050908092086969~3113342178";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
