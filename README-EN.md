@@ -10,7 +10,7 @@
 add dependency into app's build.gradle
 ```groovy
 dependencies {
-    implementation 'com.yumimobi.ads:yumiad:4.5.0.000sss'
+    implementation 'com.yumimobi.ads:yumiad:4.5.1.000'
 }
 ```
 ### 1.2 add AdMob SDK dependency
