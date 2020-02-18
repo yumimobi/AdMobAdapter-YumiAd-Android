@@ -123,6 +123,7 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
 
     @Override
     public void loadAd(MediationAdRequest mediationAdRequest, Bundle serverParameters, Bundle bundle1) {
+        ZplayDebug.d(TAG, "loadAd");
         if (mYumiMedia == null) {
             Log.e(TAG, "YumiAd not initialized.");
             return;
@@ -139,6 +140,7 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
 
     @Override
     public void showVideo() {
+        ZplayDebug.d(TAG, "showVideo");
         if (mYumiMedia == null || !mYumiMedia.isReady()) {
             ZplayDebug.d(TAG, "YumiAd not ready: " + mYumiMedia);
             return;
@@ -149,11 +151,13 @@ public class YumiAdRewardedVideo implements MediationRewardedVideoAdAdapter {
 
     @Override
     public boolean isInitialized() {
-        return mYumiMedia != null;
+        ZplayDebug.d(TAG, "isInitialized:" + false);
+        return false;
     }
 
     @Override
     public void onDestroy() {
+        ZplayDebug.d(TAG, "onDestroy");
         if (mYumiMedia != null) {
             mYumiMedia.destroy();
             mYumiMedia = null;
